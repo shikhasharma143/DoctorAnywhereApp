@@ -1,0 +1,2 @@
+insert into patients (FIRST_NAME, LAST_NAME, age, gender,dob, phone, email, address_line1, city,postal_code, country_code, state) values ('Test', 'TestLastName', 10, 'M','2012-12-31' ,'1234567890', 'test@test.com', 'Test address','Delhi', '1100059','IN', 'Delhi');
+insert into patients (FIRST_NAME, LAST_NAME, age, gender,dob, phone, email, address_line1, city,postal_code, country_code, state) values ('Test2', 'Test2LastName', 10, 'M','2012-12-31' ,'1234567890', 'test2@test.com', 'Test address','Delhi', '1100059','IN', 'Delhi')
