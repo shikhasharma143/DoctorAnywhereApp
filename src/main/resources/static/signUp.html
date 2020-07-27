@@ -4,12 +4,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Welcome to Doctor's Area</title>
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <!-- Favicons -->
+    <title>Welcome to Doctor's area</title>
+
  <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
  <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
@@ -29,6 +26,11 @@
   firebase.initializeApp(firebaseConfig);
   const auth  = firebase.auth();
 </script>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Favicons -->
+
 
 
     <style>
@@ -51,16 +53,16 @@
     <link href="styles.css" rel="stylesheet">
   </head>
   <body class="text-center">
-    <form class="form-signin" id="login-form">
+    <form class="form-signin" id="signup-form">
   <img class="mb-4" src="https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/oure9pauzlfxtvrtomjd" alt="" width="72" height="72">
-  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-  <label for="login-email" class="sr-only">Email address</label>
-  <input type="email" id="login-email" class="form-control" placeholder="Email address" required autofocus>
-  <label for="login-password" class="sr-only">Password</label>
-  <input type="password" id="login-password" class="form-control" placeholder="Password" required>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+  <label for="signup-email" class="sr-only">Email address</label>
+  <input type="email" id="signup-email" class="form-control" placeholder="Email address" required autofocus>
+  <label for="signup-password" class="sr-only">Password</label>
+  <input type="password" id="signup-password" class="form-control" placeholder="Password" required>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
     <br>
-  <p>Don't have an account? <a href="signUp.html">Sign Up</a></p>
+  <p>Already have an account? <a href="index.html">Sign In</a></p>
   <p class="mt-5 mb-3 text-muted">&copy; Shikha's Project</p>
 </form>
  <script src="scripts/auth.js"></script>
