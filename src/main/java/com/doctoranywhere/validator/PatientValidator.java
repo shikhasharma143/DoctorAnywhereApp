@@ -17,6 +17,7 @@ import com.doctoranywhere.model.Address;
 import com.doctoranywhere.model.Error;
 import com.doctoranywhere.model.Gender;
 import com.doctoranywhere.model.Patient;
+import com.doctoranywhere.model.PatientDetails;
 
 @Component
 public class PatientValidator {
@@ -37,17 +38,16 @@ public class PatientValidator {
 			"TC", "TV", "UG", "UA", "AE", "GB", "US", "UM", "UY", "UZ", "VU", "VE", "VN", "VG", "VI", "WF", "EH", "YE",
 			"ZM", "ZW");
 
-	public boolean validate(Patient patient) throws ValidationException {
+	public boolean validate(PatientDetails patient) throws ValidationException {
 		List<Error> errors = new ArrayList<>();
-		return validatePatientDetails(patient, errors);
+		return validatePatientDetails(patient.getPatient(), patient.getAddressList().get(0), errors);
 	}
 
-	public boolean validatePatientDetails(Patient patient, List<Error> errors) throws ValidationException {
+	public boolean validatePatientDetails(Patient patient, Address address, List<Error> errors) throws ValidationException {
 		validateName("First name", patient.getFirstName(), errors, 30);
 		validateName("Last name", patient.getLastName(), errors, 30);
-		validateAge("Age", patient.getAge(), errors, 1, 100);
 		validateGender("Gender", patient.getGender(), errors, Arrays.asList(Gender.values()));
-		validateAddress(patient, errors);
+		validateAddress(address, errors);
 		if (errors != null && errors.isEmpty()) {
 			return true;
 		} else {
@@ -74,22 +74,22 @@ public class PatientValidator {
 	 * @param address
 	 * @param errors
 	 */
-	public void validateAddress(Patient patient, List<Error> errors) throws ValidationException {
-		if (patient != null) {
-			validateAddressLine1(patient.getAddressLine1(), errors, 200);
-			validateCity(patient.getCity(), errors, 100);
-			validatePostalCode(patient.getPostalCode(), errors, 100);
-			validateCountry(patient.getCountry(), errors, 2);
+	public void validateAddress(Address address, List<Error> errors) throws ValidationException {
+		if (address != null) {
+			validateAddressLine1(address.getAddressLine1(), errors, 200);
+			validateCity(address.getCity(), errors, 100);
+			validatePostalCode(address.getPostalCode(), errors, 100);
+			validateCountry(address.getCountry(), errors, 2);
 
 			/*
 			 * Address contains optional field Address Line 2 and state which may contain
 			 * any character and support a maximum length of 200.
 			 */
-			if (!StringUtils.isBlank(patient.getAddressLine2()))
-				validateTextLength("Address Line 2", patient.getAddressLine2(), errors, 200);
+			if (!StringUtils.isBlank(address.getAddressLine2()))
+				validateTextLength("Address Line 2", address.getAddressLine2(), errors, 200);
 
-			if (!StringUtils.isBlank(patient.getState()))
-				validateTextLength("State", patient.getState(), errors, 100);
+			if (!StringUtils.isBlank(address.getState()))
+				validateTextLength("State", address.getState(), errors, 100);
 		}
 
 	}

@@ -1,10 +1,10 @@
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
 if(user) {
-   setupUI(user);
+  
 } else {
 console.log('user logged out');
-   setupUI();
+  
 }
 });
 
@@ -20,28 +20,11 @@ signupForm.addEventListener('submit', (e) => {
     //sign up the user
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
         //console.log(cred.user);
-    //    const modal = document.querySelector('#modal-signup');
-     //   M.Modal.getInstance(modal).close();
-        signupForm.reset();
+        window.location.replace('home.html');   
     });
 });
 }
 
-const createForm = document.querySelector('#create-form');
-if(createForm) {
-createForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    createForm['first_name'].value;
-    createForm['last_name'].value;
-    createForm['age'].value;
-   createForm['address_line1'].value;
-      createForm['address_line2'].value;
-   //todo : add here for post call
-     M.Modal.getInstance(modal).close();
-        createForm.reset();
-    });
-    
-}
 const logout = document.querySelector('#logout');
 if(logout){
 logout.addEventListener('click', (e) => {

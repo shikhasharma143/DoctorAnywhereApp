@@ -18,11 +18,11 @@ public class PatienceServiceImpl implements IPatientService {
 
 	@Override
 	public List<Patient> findAllPatients() {
-		return (List<Patient>) patientRepository.findAll();
+		return (List<Patient>) patientRepository.fetchAllPatients();
 	}
 
 	@Override
-	public Optional<Patient> findById(Long patientId) {
+	public Optional<Patient> findById(int patientId) {
 		try {
 			return patientRepository.findById(patientId);
 		} catch (Exception e) {
@@ -31,17 +31,19 @@ public class PatienceServiceImpl implements IPatientService {
 	}
 
 	@Override
-	public Patient save(Patient patient) {
-		return patientRepository.save(patient);
+	public Patient save(Patient details) {
+		 return  patientRepository.save(details);
 	}
 
-	public Patient update(Patient patient) {
-		return patientRepository.update(patient);
+	public Patient update(Patient details) {
+		return patientRepository.update(details);
 	}
 
 	@Override
-	public void delete(Patient patient) {
-		patientRepository.delete(patient);
+	public void delete(Patient details) {
+		patientRepository.deletePatientById(details.getId());
 	}
+	
 
+	
 }

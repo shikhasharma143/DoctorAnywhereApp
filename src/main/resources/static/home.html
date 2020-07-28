@@ -64,7 +64,7 @@
                     <div class="collapse navbar-collapse" style="color: black;" id="hamburgerMenu">
                         <ul class="navbar-nav ml-auto">
                             <a class="nav-link" href="">Home</a>
-                            <a type="button" class="nav-link" data-toggle="modal" data-target="#patient">Add Patient</a>
+                            <a type="button" class="nav-link" data-toggle="modal" onclick="resetPatientForm();" data-target="#patient">Add Patient</a>
                             <a class="nav-link" href="#" id="logout">Logout</a>
 							
                         </ul>
@@ -73,7 +73,7 @@
             </div>
         </section>
         <div class="jumbotron" style="background-color: #e4f9ff; margin-bottom: 0;">
-            <h1 class="display-4">Welcome<p id="userInfo"></p></h1>
+            <h1 class="display-4">Welcome Doctor!</h1>
             <p class="lead">How are you today? Here are your list of patients. Have a great day!</p>
             <hr class="my-4">
         </div>
@@ -89,8 +89,7 @@
             </thead>
             <tbody id="tbody"></tbody>
         </table>
-
-        <section id="patientSection">
+	    <form id="patientForm">
             <div id="patient" class="modal fade" tabindex="-1" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -114,38 +113,42 @@
                                 <div class="col-sm-12">
                                     <input type="email" class="form-control" id="email">
                                 </div>
-                                <label for="gender" class="col-sm-10 col-form-label">Gender</label>
+                                <label for="phone" class="col-sm-10 col-form-label">Patient's Phone Number</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" id="phone">
+                                </div>
+                                <label class="col-sm-10 col-form-label">Gender</label>
                                 <div class="col-sm-12" id="gender">
                                     <label class="radio-inline">
-                                        <input type="radio" name="Male"> Male
+                                        <input type="radio" name="gender" id="male" value="M"> Male
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="Female"> Female
+                                        <input type="radio" name="gender" id="female" value="F"> Female
                                     </label>
                                 </div>
                                 <label for="address1" class="col-sm-10 col-form-label">Address Line 1</label>
                                 <div class="col-sm-12">
-                                    <text type="text" class="form-control" id="address1">
+                                    <input type="text" class="form-control" id="address1">
                                 </div>
                                 <label for="address2" class="col-sm-10 col-form-label">Address Line 2</label>
                                 <div class="col-sm-12">
-                                    <text type="text" class="form-control" id="address2">
+                                    <input type="text" class="form-control" id="address2">
                                 </div>
 
                                 <label for="city" class="col-sm-10 col-form-label">City</label>
                                 <div class="col-sm-12">
-                                    <text type="text" class="form-control" id="city">
+                                    <input type="text" class="form-control" id="city">
                                 </div>
                                 <label for="state" class="col-sm-10 col-form-label">State</label>
                                 <div class="col-sm-12">
-                                    <text type="text" class="form-control" id="state">
+                                    <input type="text" class="form-control" id="state">
                                 </div>
 
                                 <label for="country" class="col-sm-10 col-form-label">Country</label>
                                 <div class="col-sm-12">
                                     <select class="form-control" id="country">
                                         <option value="AF">Afghanistan</option>
-                                        <option value="AX">Åland Islands</option>
+                                        <option value="AX">Ã…land Islands</option>
                                         <option value="AL">Albania</option>
                                         <option value="DZ">Algeria</option>
                                         <option value="AS">American Samoa</option>
@@ -198,10 +201,10 @@
                                         <option value="CD">Congo, the Democratic Republic of the</option>
                                         <option value="CK">Cook Islands</option>
                                         <option value="CR">Costa Rica</option>
-                                        <option value="CI">Côte d'Ivoire</option>
+                                        <option value="CI">CÃ´te d'Ivoire</option>
                                         <option value="HR">Croatia</option>
                                         <option value="CU">Cuba</option>
-                                        <option value="CW">Curaçao</option>
+                                        <option value="CW">CuraÃ§ao</option>
                                         <option value="CY">Cyprus</option>
                                         <option value="CZ">Czech Republic</option>
                                         <option value="DK">Denmark</option>
@@ -324,11 +327,11 @@
                                         <option value="PT">Portugal</option>
                                         <option value="PR">Puerto Rico</option>
                                         <option value="QA">Qatar</option>
-                                        <option value="RE">Réunion</option>
+                                        <option value="RE">RÃ©union</option>
                                         <option value="RO">Romania</option>
                                         <option value="RU">Russian Federation</option>
                                         <option value="RW">Rwanda</option>
-                                        <option value="BL">Saint Barthélemy</option>
+                                        <option value="BL">Saint BarthÃ©lemy</pooption>
                                         <option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
                                         <option value="KN">Saint Kitts and Nevis</option>
                                         <option value="LC">Saint Lucia</option>
@@ -397,7 +400,7 @@
                                 </div>
                                 <label for="pincode" class="col-sm-10 col-form-label">Pin Code</label>
                                 <div class="col-sm-12">
-                                    <text type="text" class="form-control" id="pincode">
+                                    <input type="text" class="form-control" id="pincode">
                                 </div>
 
 
@@ -406,15 +409,15 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" id="button-close" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="updatePatientData();">Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section id="paginationSection" >
+        </form>
+	
+        <section id="paginationSection" style="display:none" >
             <nav aria-label="Page navigation example">
                 <ul class="pagination pull-right">
                   <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -425,21 +428,236 @@
                 </ul>
             </nav>
         </section>
+                
+<section id="delete">
+            <div id="confirmDelete" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Confirm Delete</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete the record?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeDelete">Close</button>
+                      <button type="button" class="btn btn-primary" onclick="deletePatientRecord();">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </section>
+        
     </div>
      <script src="scripts/auth.js"></script>
  <script src="scripts/index.js"></script>
 <script>
+var isUpdateRequest = false;
+var patientId =  -1;
+function resetPatientForm() {
+    const patientForm = document.querySelector('#patientForm');
+    patientForm.reset();
+    isUpdateRequest = false;
+    patientId = -1;
+}
+
+function deletePatientData(patient) {
+patientId = patient.id;
+
+}
+function deletePatientRecord() {
+if(patientId > -1) {
+    const xhr = new XMLHttpRequest()
+  //  xhr.withCredentials = true
+
+    xhr.addEventListener('readystatechange', function() {
+     if (this.readyState === this.DONE) {
+	    document.getElementById('closeDelete').click();
+		location.reload();
+     }
+    })
+    xhr.open('DELETE', 'http://localhost:8080/patients/' + parseInt(patientId))
+    xhr.setRequestHeader('content-type', 'application/json')
+ //   xhr.setRequestHeader('authorization', 'Bearer 123abc456def')
+	xhr.send(null);
+}
+}
+
+function populatePatientData(patients) {
+    document.getElementById("firstName").value = patients.patient.firstName;
+    document.getElementById("lastName").value = patients.patient.lastName;
+    document.getElementById("email").value = patients.patient.email;
+    if (patients.patient.gender == "M") {
+        document.getElementById("male").checked = true;
+        document.getElementById("female").checked = false;
+    } else if (patients.patient.gender == "F") {
+        document.getElementById("female").checked = true;
+        document.getElementById("male").checked = false;
+    }
+    document.getElementById("phone").value = patients.patient.phone;
+    
+if(patients.addressList) {
+var address  = patients.addressList[0];
+    document.getElementById("address1").value = address.addressLine1;
+    document.getElementById("address2").value = address.addressLine2;
+    document.getElementById("city").value = address.city;
+    document.getElementById("state").value = address.state;
+    document.getElementById("country").value = address.country;
+    document.getElementById("pincode").value = address.postalCode;
+}
+
+    patientId = patients.id;
+    isUpdateRequest = true;
+}
+
+
+function validateEmail(email) {
+    var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+    if (reg.test(email.value)) {
+        return true;
+    } else {
+        alert("Please enter valid email");
+        return false;
+    }
+}
+
+function validatePhonenumber(inputtxt) {
+    var phoneno = /^\d{10}$/;
+    if (inputtxt.value.match(phoneno)) {
+        return true;
+    } else {
+        alert("Please enter valid phone number");
+        inputtxt.focus();
+        return false;
+    }
+}
+
+    const patientForm = document.querySelector('#patientForm');
+function validatePatientInfo() {
+    if (patientForm) {
+        var firstName = patientForm.firstName;
+        if (firstName.value == null || firstName.value == "") {
+            alert("Please enter patient's first name");
+            firstName.focus();
+            return false;
+        }
+        var lastName = patientForm.lastName;
+        if (lastName.value == null || lastName.value == "") {
+            alert("Please enter patient's last name");
+            lastName.focus();
+            return false;
+        }
+        var regName = /^([a-zA-Z ]){2,30}$/;
+        if (!regName.test(firstName.value)) {
+            alert('Invalid First name given. (only alphabets allowed and max allowed characters 30)');
+            firstName.focus();
+            return false;
+        }
+        if (!regName.test(lastName.value)) {
+            alert('Invalid Last Name given. (only alphabets allowed and  max allowed characters 30)');
+            lastName.focus();
+            return false;
+        }
+        validateEmail(patientForm.email);
+        validatePhonenumber(patientForm.phone);
+        if (patientForm.address1.value == null || patientForm.address1.value == "") {
+            alert("Please enter Address");
+            patientForm.address1.focus();
+            return false;
+        }
+        if (patientForm.city.value == null || patientForm.city.value == "") {
+            alert("Please enter City");
+            patientForm.city.focus();
+            return false;
+        }
+        if (patientForm.state.value == null || patientForm.state.value == "") {
+            alert("Please enter State");
+            patientForm.state.focus();
+            return false;
+        }
+ 		if (patientForm.pincode.value == null || patientForm.pincode.value == "") {
+            alert("Please enter pincode");
+            patientForm.pincode.focus();
+            return false;
+        }
+
+        var pat1 = /^\d{6}$/;
+        if (!pat1.test(patientForm.pincode.value)) {
+            alert('Invalid Pincode field');
+            patientForm.pincode.focus();
+            return false;
+        }
+		var radios = document.getElementsByName("gender");
+    	var formValid = false;
+  		var i = 0;
+   		 while (!formValid && i < radios.length) {
+        if (radios[i].checked) formValid = true;
+        i++;
+    	}
+   		 if (!formValid) {alert("Please choose Gender"); return false;}
+   		 
+    }
+}
+
+function isNonEmpty(val) {
+return val != null && val != "";
+}
+
+function updatePatientData() {
+    if(validatePatientInfo() == false) {
+    	return;
+    }
+    const data = JSON.stringify({
+   'firstName': patientForm.firstName.value,
+   'lastName': patientForm.lastName.value,
+   'gender': patientForm.gender.value,
+   'phone': patientForm.phone.value,
+   'email': patientForm.email.value,  
+   'addressLine1': patientForm.address1.value,
+   'addressLine2': patientForm.address2.value,
+   'city': patientForm.city.value,
+   'country': patientForm.country.value,
+   'postalCode': patientForm.pincode.value,
+   'state': patientForm.state.value,
+    })
+    const xhr = new XMLHttpRequest()
+  //  xhr.withCredentials = true
+
+    xhr.addEventListener('readystatechange', function() {
+     if (this.readyState === this.DONE) {
+		resetPatientForm();  
+		document.getElementById("button-close").click();
+		location.reload();
+     }
+    })
+    if(isUpdateRequest && patientId > -1) {
+    xhr.open('PUT', 'http://localhost:8080/patients/' + parseInt(patientId))
+    } else {
+    xhr.open('POST', 'http://localhost:8080/patients/')
+    }
+    xhr.setRequestHeader('content-type', 'application/json')
+ //   xhr.setRequestHeader('authorization', 'Bearer 123abc456def')
+
+    xhr.send(data)
+}
+
+
 var request = new XMLHttpRequest()
 var table = document.getElementById("patientTable");
 
+ var data;
 request.open('GET', 'http://localhost:8080/patients', true)
-request.onload = function () {
+request.onload = function() {
 
-  var data = JSON.parse(this.response)
-var html = '';
-var count = 1;
-  if (request.status >= 200 && request.status < 400) {
-    data.forEach((patients) => {
+    data = JSON.parse(this.response)
+    var html = '';
+    var count = 1;
+    if (request.status >= 200 && request.status < 400) {
+  data.forEach((patients) => {
+              var patient = JSON.stringify(patients);
     var rowNode = document.createElement("tr");
 	var cellNode = document.createElement("td");
     var textNode = document.createTextNode(count);
@@ -447,20 +665,34 @@ var count = 1;
 	cellNode.appendChild(textNode);
 	rowNode.appendChild(cellNode);
 	var cellNode = document.createElement("td");
-    var textNode = document.createTextNode(patients.firstName + " " +  patients.lastName);
+    var textNode = document.createTextNode(patients.patient.firstName + " " +  patients.patient.lastName);
 	cellNode.appendChild(textNode);
 	rowNode.appendChild(cellNode);
 	 cellNode = document.createElement("td");
-     textNode = document.createTextNode(patients.email);
- cellNode.appendChild(textNode);
+     textNode = document.createTextNode(patients.patient.email);
+ 	cellNode.appendChild(textNode);
 	rowNode.appendChild(cellNode);
+	if(patients.addressList) {
+	var address = patients.addressList[0];
 	var cellNode = document.createElement("td");
-    var textNode = document.createTextNode(patients.addressLine1 + ", "  + patients.addressLine2 + ", " + patients.city + ", " + patients.state);
+	           var addressText = address.addressLine1;
+           if( isNonEmpty(patient.addressLine2)) 
+     	     addressText+=  ", " + address.addressLine2;
+           if( isNonEmpty(patient.city)) 
+           addressText+=  ", " + address.city;
+           if( isNonEmpty(patient.state))
+           addressText+=  ", " + address.state;
+           if( isNonEmpty(patient.country))
+           addressText+=  ", " + address.country;
+           if( isNonEmpty(patient.postalCode))
+           addressText+=  ", " + address.postalCode;
+    var textNode = document.createTextNode(addressText);
 	cellNode.appendChild(textNode);
 	rowNode.appendChild(cellNode);
+	}
 	
 	var cellNode = document.createElement("td");
-	cellNode.innerHTML = "<a data-toggle='modal' data-target='#patient'><i class='icon fa fa-pencil-square-o' data-toggle='tooltip' title='Edit Record'></i></a><a><i data-toggle='tooltip' title='Mark as done' class='icon markDone fa fa-times'></i></a><a><i data-toggle='tooltip' title='Delete Record' class='icon fa fa-trash'></i></a>";
+	cellNode.innerHTML =  "<a data-toggle='modal' data-target='#patient' onclick='populatePatientData(" + patient + ")'><i class='icon fa fa-pencil-square-o' data-toggle='tooltip' title='Edit Record'></i></a><a><i data-toggle='tooltip' title='Mark as done' class='icon markDone fa fa-times'></i></a><a data-toggle='modal' data-target='#confirmDelete' onclick='deletePatientData(" + patient + ")'><i data-toggle='tooltip' title='Delete Record' class='icon fa fa-trash'></i></a>";
 	rowNode.appendChild(cellNode);
 	
 	table.appendChild(rowNode);    
@@ -473,6 +705,7 @@ var count = 1;
 }
 
 request.send()
+
 </script>
 </body>
 </html>
