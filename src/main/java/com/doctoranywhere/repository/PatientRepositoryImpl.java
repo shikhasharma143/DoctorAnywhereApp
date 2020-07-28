@@ -28,12 +28,12 @@ public class PatientRepositoryImpl implements PatientRepository {
 		return patient;
 	}
 
-	public Optional<Patient> findPatientByFirstName(String firstName) {
+	public Optional<Patient> findPatientByEmail(String email) {
 		try {
-			return Optional.of(jdbcTemplate.queryForObject("select * from patients where first_name=?",
-					new Object[] { firstName }, new PatientRowMapper()));
+			return Optional.of(jdbcTemplate.queryForObject("select * from patients where email=?",
+					new Object[] { email }, new PatientRowMapper()));
 		} catch (Exception e) {
-			throw new PatientNotFoundException("Patient not found for patient name " + firstName);
+			return null;
 		}
 	}
 
@@ -78,7 +78,7 @@ public class PatientRepositoryImpl implements PatientRepository {
 		String sql = "insert into patients (FIRST_NAME, LAST_NAME,  gender, phone, email)  " + "values(?, ?, ?, ?,?)";
 		long id = jdbcTemplate.update(sql, patient.getFirstName(), patient.getLastName(),
 				patient.getGender().name().charAt(0), patient.getPhone(), patient.getEmail());
-		return patient;
+		return findPatientByEmail(patient.getEmail()).get();
 	}
 
 	@Override
@@ -143,7 +143,7 @@ public class PatientRepositoryImpl implements PatientRepository {
 	}
 
 	@Override
-	public Optional<Patient> findPatientDetailsById(Long id) {
+	public Optional<Patient> findPatientById(Long id) {
 		return findById(id);
 	}
 

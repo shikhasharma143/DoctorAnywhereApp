@@ -32,7 +32,7 @@ public class PatienceServiceImpl implements IPatientService {
 
 	@Override
 	public Patient save(Patient details) {
-		 return  patientRepository.save(details);
+		return patientRepository.save(details);
 	}
 
 	public Patient update(Patient details) {
@@ -43,7 +43,10 @@ public class PatienceServiceImpl implements IPatientService {
 	public void delete(Patient details) {
 		patientRepository.deletePatientById(details.getId());
 	}
-	
 
-	
+	@Override
+	public boolean isPatientAlreadyExists(String email) {
+		return patientRepository.findPatientByEmail(email).isPresent();
+	}
+
 }

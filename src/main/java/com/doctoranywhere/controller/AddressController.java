@@ -1,19 +1,26 @@
 package com.doctoranywhere.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.doctoranywhere.exception.PatientAlreadyExistsException;
+import com.doctoranywhere.exception.ValidationException;
 import com.doctoranywhere.model.Address;
+import com.doctoranywhere.model.Patient;
+import com.doctoranywhere.model.PatientDetails;
 import com.doctoranywhere.service.IAddressService;
 
 @Controller
@@ -27,9 +34,11 @@ public class AddressController {
 		return ResponseEntity.ok().body(addresses);
 	}
 
-	@GetMapping("/addresses/patient/{patientId}")
+	@GetMapping("/addresses/patients/{patientId}")
 	public ResponseEntity<List<Address>> getAllAddressForPatient(@PathVariable(value = "patientId") int patientId) {
-		List<Address> addresses = (List<Address>) addressService.findAllAddressesForPatient(patientId);
+		List<Address> addresses = new ArrayList<Address>();
+		addresses.add(addressService.findDefaultAddressesForPatient(patientId));
+		addresses.addAll(addressService.findNonDefaultAddressesForPatient(patientId));
 		return ResponseEntity.ok().body(addresses);
 	}
 
@@ -74,4 +83,10 @@ public class AddressController {
 		return ResponseEntity.ok().body(updateAddress);
 	}
 
+	@PostMapping("/address/{patientId}")
+	public ResponseEntity<Address> addPatient(@Valid @RequestBody Address address,
+			@PathVariable(value = "patientId") int patientId) throws ValidationException {
+		addressService.saveAddressForPatient(address, patientId);
+		return new ResponseEntity<Address>(address, HttpStatus.OK);
+	}
 }

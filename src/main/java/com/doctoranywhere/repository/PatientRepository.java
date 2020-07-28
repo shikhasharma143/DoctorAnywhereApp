@@ -21,7 +21,8 @@ public interface PatientRepository extends CrudRepository<Patient, Long> {
 
 	List<Patient> fetchAllPatients();
 
-	Optional<Patient> findPatientDetailsById(Long id);
+	Optional<Patient> findPatientById(Long id);
 
+	Optional<Patient> findPatientByEmail(String email);
 
 }

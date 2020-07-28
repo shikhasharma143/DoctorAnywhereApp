@@ -95,3 +95,24 @@ a.nav-link {
       background-color: #343a40;
       color: #eeeeee;
   }
+ 
+  /* 
+  td{position:relative}
+  
+  tr.strikeout td:before {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border-bottom: 1px solid #111;
+    width: 35%;
+    margin-left:450px;
+  }
+  
+  tr.strikeout td:after {
+    content: "\00B7";
+    font-size: 1px;
+  } */
+  .strikeout {
+    text-decoration: line-through;
+  }

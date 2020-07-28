@@ -16,4 +16,6 @@ public interface IPatientService {
 
 	void delete(Patient patient);
 
+	boolean isPatientAlreadyExists(String email);
+
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
 import com.doctoranywhere.controller.PatientNotFoundException;
+import com.doctoranywhere.exception.PatientAlreadyExistsException;
 import com.doctoranywhere.exception.ValidationErrorCode;
 import com.doctoranywhere.exception.ValidationException;
 import com.doctoranywhere.model.Error;
@@ -38,6 +39,13 @@ public class GlobalExceptionHandler {
 		Error errorDetails = new Error(new Date(), ex.getMessage(), request.getDescription(false));
 		errorDetails.setCode(ValidationErrorCode.INVALID_VALUE.getErrorCode());
 		return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(PatientAlreadyExistsException.class)
+	public ResponseEntity<?> alreadyExistsException(PatientAlreadyExistsException ex, WebRequest request) {
+		Error errorDetails = new Error(new Date(), ex.getMessage(), request.getDescription(false));
+		errorDetails.setCode(ValidationErrorCode.ALREADY_EXISTS.getErrorCode());
+		return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
