@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.doctoranywhere.controller.AddressNotFoundException;
 import com.doctoranywhere.model.Address;
 import com.doctoranywhere.model.AddressRowMapper;
+import com.doctoranywhere.model.Patient;
 
 public class AddressRepositoryImpl implements AddressRepository {
 	@Autowired

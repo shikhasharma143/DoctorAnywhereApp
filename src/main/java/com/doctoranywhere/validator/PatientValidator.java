@@ -76,9 +76,9 @@ public class PatientValidator {
 	 */
 	public void validateAddress(Address address, List<Error> errors) throws ValidationException {
 		if (address != null) {
-			validateAddressLine1(address.getAddressLine1(), errors, 200);
-			validateCity(address.getCity(), errors, 100);
-			validatePostalCode(address.getPostalCode(), errors, 100);
+			validateAddressLine1(address.getAddressLine1(), errors, 30);
+			validateCity(address.getCity(), errors, 20);
+			validatePostalCode(address.getPostalCode(), errors, 6);
 			validateCountry(address.getCountry(), errors, 2);
 
 			/*
@@ -86,10 +86,10 @@ public class PatientValidator {
 			 * any character and support a maximum length of 200.
 			 */
 			if (!StringUtils.isBlank(address.getAddressLine2()))
-				validateTextLength("Address Line 2", address.getAddressLine2(), errors, 200);
+				validateTextLength("Address Line 2", address.getAddressLine2(), errors, 30);
 
 			if (!StringUtils.isBlank(address.getState()))
-				validateTextLength("State", address.getState(), errors, 100);
+				validateTextLength("State", address.getState(), errors, 20);
 		}
 
 	}

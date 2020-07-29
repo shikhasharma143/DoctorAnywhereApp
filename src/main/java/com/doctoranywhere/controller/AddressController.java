@@ -69,10 +69,11 @@ public class AddressController {
 		addressToUpdate.setState(addressRequest.getState());
 		addressToUpdate.setPostalCode(addressRequest.getPostalCode());
 		addressToUpdate.setDefaultAddress(addressRequest.isDefaultAddress());
+		
 		// if make default address then change first the earlier default address
 		if (addressRequest.isDefaultAddress()) {
 			List<Address> addressesForPatient = addressService
-					.findAllAddressesForPatient(addressRequest.getPatientId());
+					.findAllAddressesForPatient(addressToUpdate.getPatientId());
 			for (Address addressForPatient : addressesForPatient) {
 				if (addressForPatient.isDefaultAddress()) {
 					addressService.updateIsDefaultField(addressForPatient.getId().intValue());

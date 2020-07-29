@@ -29,6 +29,6 @@ public interface AddressRepository extends CrudRepository<Address, Long> {
 
 	List<Address> findNonDefaultAddressesForPatient(int patientId);
 
-	Address save(Patient details);
+	Address save(Address details);
 
 }
