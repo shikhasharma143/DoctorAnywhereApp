@@ -967,6 +967,7 @@ function validateEmail(email) {
 		return true;
 	} else {
 		alert("Please enter valid email");
+		email.focus();
 		return false;
 	}
 }
@@ -1009,8 +1010,12 @@ function validatePatientInfo() {
 			lastName.focus();
 			return false;
 		}
-		validateEmail(patientForm.email);
-		validatePhonenumber(patientForm.phone);
+		if(!validateEmail(patientForm.email)) {
+			return false;
+		}
+		if(!validatePhonenumber(patientForm.phone)) {
+			return false;
+		}
 		if (patientForm.address1.value == null || patientForm.address1.value == "") {
 			alert("Please enter Address");
 			patientForm.address1.focus();
