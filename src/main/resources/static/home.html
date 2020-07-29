@@ -929,7 +929,10 @@ function populateAddress(address) {
 	isUpdateAddressRequest = true;
 	addressId = address.id;
 }
+function performMarkAsDone(count) {
+document.getElementsByClassName('strike')[count].parentNode.parentNode.classList.toggle("strikeout");
 
+}
 function populatePatientData(patients) {
 	document.getElementById("firstName").value = patients.patient.firstName;
 	document.getElementById("lastName").value = patients.patient.lastName;
@@ -1210,7 +1213,7 @@ request.onload = function () {
 			}
 
 			var cellNode = document.createElement("td");
-			cellNode.innerHTML = "<a data-toggle='modal' data-target='#patient' onclick='populatePatientData(" + patient + ")'><i class='icon fa fa-pencil-square-o' data-toggle='tooltip' title='Edit Record'></i></a><a class='strike'><i data-toggle='tooltip' title='Mark as done' class='icon markDone fa fa-times'></i></a><a data-toggle='modal' data-target='#confirmDeletePatient' onclick='deletePatientData(" + patient + ")'><i data-toggle='tooltip' title='Delete Record' class='icon fa fa-trash'></i></a>";
+			cellNode.innerHTML = "<a data-toggle='modal' data-target='#patient' onclick='populatePatientData(" + patient + ")'><i class='icon fa fa-pencil-square-o' data-toggle='tooltip' title='Edit Record'></i></a><a class='strike' onclick='performMarkAsDone(" + (count-1) + ");'><i data-toggle='tooltip' title='Mark as done' class='icon markDone fa fa-times'></i></a><a data-toggle='modal' data-target='#confirmDeletePatient' onclick='deletePatientData(" + patient + ")'><i data-toggle='tooltip' title='Delete Record' class='icon fa fa-trash'></i></a>";
 			rowNode.appendChild(cellNode);
 
 			table.appendChild(rowNode);
@@ -1223,10 +1226,6 @@ request.onload = function () {
 }
 
 request.send()
-
-$("#patientTable .strike").click(function () {
-	$(this).parent().parent().toggleClass('strikeout');
-});
 </script>
 </body>
 </html>
